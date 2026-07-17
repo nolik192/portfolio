@@ -1827,6 +1827,7 @@ node_modules/
 .next/
 studio/dist/
 .env*
+.worktrees/
 ```
 
 - [ ] **Step 9: Create a Sanity project (manual, one-time)**

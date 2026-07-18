@@ -1,6 +1,7 @@
 import { TerminalPrompt } from "@/components/TerminalPrompt";
 import { ProjectCard } from "@/components/ProjectCard";
 import { OtherProjectCard } from "@/components/OtherProjectCard";
+import { Reveal } from "@/components/Reveal";
 import { majorProjects, otherProjects } from "@/lib/data/projects";
 
 export default function ProjectsPage() {
@@ -9,14 +10,18 @@ export default function ProjectsPage() {
       <TerminalPrompt command="ls projects/" />
       <h1 className="text-3xl font-bold text-foreground font-mono mb-8">Projects</h1>
       <div className="grid gap-6 mb-12">
-        {majorProjects.map((project) => (
-          <ProjectCard key={project.slug} project={project} />
+        {majorProjects.map((project, index) => (
+          <Reveal key={project.slug} delay={index * 0.08}>
+            <ProjectCard project={project} />
+          </Reveal>
         ))}
       </div>
       <h2 className="text-xl font-bold text-foreground font-mono mb-4">Other Projects</h2>
       <div className="grid gap-4 sm:grid-cols-3">
-        {otherProjects.map((project) => (
-          <OtherProjectCard key={project.name} project={project} />
+        {otherProjects.map((project, index) => (
+          <Reveal key={project.name} delay={index * 0.08}>
+            <OtherProjectCard project={project} />
+          </Reveal>
         ))}
       </div>
     </section>

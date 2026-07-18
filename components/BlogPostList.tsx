@@ -1,4 +1,5 @@
 import { BlogPostPreview } from "./BlogPostPreview";
+import { Reveal } from "./Reveal";
 import type { PostPreview } from "@/lib/sanity/queries";
 
 export function BlogPostList({
@@ -14,9 +15,11 @@ export function BlogPostList({
 
   return (
     <ul className="space-y-6">
-      {posts.map((post) => (
+      {posts.map((post, index) => (
         <li key={post.slug}>
-          <BlogPostPreview post={post} />
+          <Reveal delay={index * 0.08}>
+            <BlogPostPreview post={post} />
+          </Reveal>
         </li>
       ))}
     </ul>

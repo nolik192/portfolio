@@ -1,6 +1,6 @@
 .superpowers/
 node_modules/
 .next/
-.env
-.env.local
+studio/dist/
+.env*
 .worktrees/

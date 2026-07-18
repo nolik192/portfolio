@@ -1,7 +1,21 @@
 import { notFound } from "next/navigation";
-import { PortableText } from "@portabletext/react";
+import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import { TerminalPrompt } from "@/components/TerminalPrompt";
+import { SanityImage } from "@/components/SanityImage";
 import { getAllPosts, getPostBySlug } from "@/lib/sanity/queries";
+import type { SanityImageValue } from "@/lib/sanity/queries";
+
+const portableTextComponents: PortableTextComponents = {
+  types: {
+    image: ({ value }) => (
+      <SanityImage
+        value={value as SanityImageValue}
+        width={800}
+        className="w-full h-auto rounded-md"
+      />
+    ),
+  },
+};
 
 export const revalidate = 3600;
 
@@ -33,8 +47,16 @@ export default async function BlogPostPage({
           day: "numeric",
         })}
       </p>
+      {post.coverImage && (
+        <SanityImage
+          value={post.coverImage}
+          width={768}
+          className="w-full h-auto rounded-md mb-8"
+          priority
+        />
+      )}
       <div className="text-foreground-dim leading-relaxed space-y-4">
-        <PortableText value={post.body as never} />
+        <PortableText value={post.body as never} components={portableTextComponents} />
       </div>
     </article>
   );

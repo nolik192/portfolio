@@ -1,23 +1,36 @@
 import { sanityClient } from "./client";
 
+export interface SanityImageValue {
+  asset: { _ref: string; _type: "reference" };
+  hotspot?: unknown;
+  crop?: unknown;
+  alt?: string;
+  dimensions?: { width: number; height: number };
+}
+
 export interface PostPreview {
   title: string;
   slug: string;
   excerpt: string;
   publishedAt: string;
-  coverImage?: string;
+  coverImage?: SanityImageValue;
 }
 
 export interface Post extends PostPreview {
   body: unknown;
 }
 
+const COVER_IMAGE_PROJECTION = `coverImage{
+  ...,
+  "dimensions": asset->metadata.dimensions
+}`;
+
 const PREVIEW_PROJECTION = `{
   title,
   "slug": slug.current,
   "excerpt": coalesce(excerpt, pt::text(body)[0...160]),
   publishedAt,
-  "coverImage": coverImage.asset->url
+  "coverImage": ${COVER_IMAGE_PROJECTION}
 }`;
 
 export async function getLatestPosts(limit: number): Promise<PostPreview[]> {
@@ -51,8 +64,14 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
         "slug": slug.current,
         "excerpt": coalesce(excerpt, pt::text(body)[0...160]),
         publishedAt,
-        "coverImage": coverImage.asset->url,
-        body
+        "coverImage": ${COVER_IMAGE_PROJECTION},
+        body[]{
+          ...,
+          _type == "image" => {
+            ...,
+            "dimensions": asset->metadata.dimensions
+          }
+        }
       }`,
       { slug }
     );

@@ -29,6 +29,14 @@ export const postType = defineType({
       title: "Cover Image",
       type: "image",
       options: { hotspot: true },
+      fields: [
+        defineField({
+          name: "alt",
+          title: "Alternative text",
+          type: "string",
+          validation: (rule) => rule.warning("Alt text helps accessibility and SEO"),
+        }),
+      ],
     }),
     defineField({
       name: "publishedAt",
@@ -40,7 +48,21 @@ export const postType = defineType({
       name: "body",
       title: "Body",
       type: "array",
-      of: [{ type: "block" }],
+      of: [
+        { type: "block" },
+        {
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            defineField({
+              name: "alt",
+              title: "Alternative text",
+              type: "string",
+              validation: (rule) => rule.warning("Alt text helps accessibility and SEO"),
+            }),
+          ],
+        },
+      ],
       validation: (rule) => rule.required(),
     }),
   ],

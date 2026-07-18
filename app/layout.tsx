@@ -3,6 +3,8 @@ import { JetBrains_Mono, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 
 import type { ReactNode } from "react";
+import { Nav } from "@/components/Nav";
+import { Footer } from "@/components/Footer";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -27,7 +29,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${jetbrainsMono.variable} ${ibmPlexSans.variable}`}>
-      <body className="bg-background text-foreground font-sans">{children}</body>
+      <body className="bg-background text-foreground font-sans min-h-screen flex flex-col">
+        <Nav />
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }

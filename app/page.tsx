@@ -5,7 +5,7 @@ import { BlogPostList } from "@/components/BlogPostList";
 import { profile } from "@/lib/data/profile";
 import { getLatestPosts } from "@/lib/sanity/queries";
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 export default async function HomePage() {
   const latestPosts = await getLatestPosts(3);

@@ -3,7 +3,7 @@ import { TerminalPrompt } from "@/components/TerminalPrompt";
 import { BlogPostList } from "@/components/BlogPostList";
 import { getAllPosts } from "@/lib/sanity/queries";
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 const PAGE_SIZE = 10;
 

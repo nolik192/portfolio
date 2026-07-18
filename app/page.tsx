@@ -1,3 +1,6 @@
+import { Hero } from "@/components/Hero";
+import { profile } from "@/lib/data/profile";
+
 export default function HomePage() {
-  return <p>Portfolio coming soon.</p>;
+  return <Hero profile={profile} />;
 }

@@ -2,18 +2,18 @@ import type { Project } from "@/lib/data/projects";
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="bg-surface border border-border rounded-md p-6 transition-colors duration-200 hover:border-accent-secondary/60">
+    <article className="bg-surface border border-border rounded-md p-6 transition-colors duration-200 hover:border-accent/60">
       <div className="flex items-baseline justify-between gap-4 mb-1">
-        <h3 className="text-lg font-bold text-foreground font-mono">{project.name}</h3>
-        <span className="text-xs text-muted font-mono whitespace-nowrap">{project.period}</span>
+        <h3 className="text-lg font-bold text-foreground">{project.name}</h3>
+        <span className="text-xs text-muted whitespace-nowrap">{project.period}</span>
       </div>
-      <p className="text-sm text-accent-secondary font-mono mb-3">{project.role}</p>
+      <p className="text-sm text-accent font-bold mb-3">{project.role}</p>
       <p className="text-foreground-dim mb-4">{project.description}</p>
       <ul className="flex flex-wrap gap-2 mb-4">
         {project.stack.map((tech) => (
           <li
             key={tech}
-            className="text-xs font-mono text-foreground-dim border border-border rounded px-2 py-1"
+            className="text-xs text-foreground-dim border border-border rounded px-2 py-1"
           >
             {tech}
           </li>

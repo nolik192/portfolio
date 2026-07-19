@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/sanity/queries";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://yurybortsov.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://bortsov.cc";
 
 const STATIC_ROUTES = ["", "/projects", "/about", "/blog", "/contact"];
 

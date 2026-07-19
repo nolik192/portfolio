@@ -3,6 +3,9 @@ import { urlFor } from "@/lib/sanity/image";
 import type { SanityImageValue } from "@/lib/sanity/queries";
 
 const DEFAULT_ASPECT_RATIO = 1.5;
+/** Fetch the Sanity source at this multiple of the display size so retina (2x/3x) srcset
+ * variants have real detail to downscale from, instead of Next.js upscaling a tiny source. */
+const SOURCE_RESOLUTION_MULTIPLIER = 3;
 
 export function SanityImage({
   value,
@@ -26,7 +29,10 @@ export function SanityImage({
       ? Math.round(width * (value.dimensions.height / value.dimensions.width))
       : Math.round(width / DEFAULT_ASPECT_RATIO);
 
-  const image = urlFor(value).width(width).height(height).fit(aspectRatio ? "crop" : "max");
+  const image = urlFor(value)
+    .width(width * SOURCE_RESOLUTION_MULTIPLIER)
+    .height(height * SOURCE_RESOLUTION_MULTIPLIER)
+    .fit(aspectRatio ? "crop" : "max");
 
   return (
     <Image
@@ -35,6 +41,7 @@ export function SanityImage({
       alt={value.alt ?? ""}
       width={width}
       height={height}
+      quality={90}
       priority={priority}
     />
   );

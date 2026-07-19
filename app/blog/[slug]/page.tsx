@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import { SanityImage } from "@/components/SanityImage";
+import { ImageGallery } from "@/components/ImageGallery";
 import { getAllPosts, getPostBySlug } from "@/lib/sanity/queries";
-import type { SanityImageValue } from "@/lib/sanity/queries";
+import type { GalleryValue, SanityImageValue } from "@/lib/sanity/queries";
 
 const IMAGE_SIZE_WIDTH: Record<"small" | "medium" | "large", number> = {
   small: 320,
@@ -25,6 +26,7 @@ const portableTextComponents: PortableTextComponents = {
         />
       );
     },
+    gallery: ({ value }) => <ImageGallery images={(value as GalleryValue).images} />,
   },
 };
 

@@ -76,6 +76,41 @@ export const postType = defineType({
             }),
           ],
         },
+        {
+          type: "object",
+          name: "gallery",
+          title: "Photo Gallery",
+          fields: [
+            defineField({
+              name: "images",
+              title: "Images",
+              type: "array",
+              of: [
+                {
+                  type: "image",
+                  options: { hotspot: true },
+                  fields: [
+                    defineField({
+                      name: "alt",
+                      title: "Alternative text",
+                      type: "string",
+                      validation: (rule) => rule.warning("Alt text helps accessibility and SEO"),
+                    }),
+                  ],
+                },
+              ],
+              validation: (rule) => rule.min(2).error("Add at least 2 images for a gallery"),
+            }),
+          ],
+          preview: {
+            select: { images: "images" },
+            prepare({ images }: { images?: { length: number }[] }) {
+              return {
+                title: `Photo Gallery (${images?.length ?? 0} photos)`,
+              };
+            },
+          },
+        },
       ],
       validation: (rule) => rule.required(),
     }),

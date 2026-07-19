@@ -9,6 +9,10 @@ export interface SanityImageValue {
   dimensions?: { width: number; height: number };
 }
 
+export interface GalleryValue {
+  images: SanityImageValue[];
+}
+
 export interface PostPreview {
   title: string;
   slug: string;
@@ -71,6 +75,13 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
           _type == "image" => {
             ...,
             "dimensions": asset->metadata.dimensions
+          },
+          _type == "gallery" => {
+            ...,
+            images[]{
+              ...,
+              "dimensions": asset->metadata.dimensions
+            }
           }
         }
       }`,

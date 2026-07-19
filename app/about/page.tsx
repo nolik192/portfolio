@@ -26,7 +26,7 @@ export default function AboutPage() {
               {entry.title} &mdash; {entry.organization}
             </p>
             <p className="text-xs text-muted font-mono mb-1">{entry.period}</p>
-            <p className="text-sm text-foreground-dim">{entry.description}</p>
+            <p className="text-foreground-dim">{entry.description}</p>
           </li>
         ))}
       </ul>

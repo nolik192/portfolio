@@ -8,7 +8,7 @@ export function ProjectCard({ project }: { project: Project }) {
         <span className="text-xs text-muted font-mono whitespace-nowrap">{project.period}</span>
       </div>
       <p className="text-sm text-accent-secondary font-mono mb-3">{project.role}</p>
-      <p className="text-sm text-foreground-dim mb-4">{project.description}</p>
+      <p className="text-foreground-dim mb-4">{project.description}</p>
       <ul className="flex flex-wrap gap-2 mb-4">
         {project.stack.map((tech) => (
           <li

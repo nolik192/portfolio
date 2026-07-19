@@ -25,7 +25,7 @@ export function BlogPostPreview({ post }: { post: PostPreview }) {
           day: "numeric",
         })}
       </p>
-      <p className="text-sm text-foreground-dim">{post.excerpt}</p>
+      <p className="text-foreground-dim">{post.excerpt}</p>
     </article>
   );
 }

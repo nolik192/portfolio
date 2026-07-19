@@ -14,7 +14,7 @@ export function Hero({ profile }: { profile: Profile }) {
         <h1 className="text-4xl sm:text-5xl font-black text-foreground leading-tight tracking-tight mb-8 max-w-2xl">
           {profile.name}
         </h1>
-        <div className="flex gap-4">
+        <div className="flex flex-wrap gap-4">
           <Link
             href="/projects"
             className="border-2 border-foreground text-foreground px-5 py-2.5 text-sm font-bold hover:border-accent hover:text-accent transition-colors duration-200"

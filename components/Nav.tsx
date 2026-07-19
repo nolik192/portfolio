@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const links = [
   { href: "/", label: "Index" },
@@ -9,6 +12,8 @@ const links = [
 ];
 
 export function Nav() {
+  const pathname = usePathname();
+
   return (
     <header className="border-b-2 border-foreground">
       <nav className="max-w-4xl mx-auto flex flex-wrap items-center justify-between gap-6 px-6 py-4 text-sm">
@@ -16,16 +21,23 @@ export function Nav() {
           BORTSOV
         </Link>
         <ul className="flex flex-wrap gap-6 uppercase text-xs tracking-wide font-bold">
-          {links.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className="inline-block py-3 text-foreground hover:text-accent transition-colors duration-200"
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
+          {links.map((link) => {
+            const isActive =
+              link.href === "/" ? pathname === "/" : pathname?.startsWith(link.href);
+            return (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  aria-current={isActive ? "page" : undefined}
+                  className={`inline-block py-3 transition-colors duration-200 ${
+                    isActive ? "text-accent" : "text-foreground hover:text-accent"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </header>

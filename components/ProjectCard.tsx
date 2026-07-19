@@ -3,7 +3,7 @@ import type { Project } from "@/lib/data/projects";
 export function ProjectCard({ project }: { project: Project }) {
   return (
     <article className="bg-surface border border-border rounded-md p-6 transition-colors duration-200 hover:border-accent/60">
-      <div className="flex items-baseline justify-between gap-4 mb-1">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-1">
         <h3 className="text-lg font-bold text-foreground">{project.name}</h3>
         <span className="text-xs text-muted whitespace-nowrap">{project.period}</span>
       </div>

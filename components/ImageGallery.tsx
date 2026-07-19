@@ -22,11 +22,25 @@ export function ImageGallery({ images }: { images: SanityImageValue[] }) {
     setIndex(Math.round(container.scrollLeft / container.clientWidth));
   }
 
+  function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      scrollToIndex(index + 1);
+    } else if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      scrollToIndex(index - 1);
+    }
+  }
+
   return (
     <div className="my-4">
       <div
         ref={scrollRef}
         onScroll={handleScroll}
+        onKeyDown={handleKeyDown}
+        tabIndex={0}
+        role="region"
+        aria-label="Photo gallery"
         className="no-scrollbar flex overflow-x-auto snap-x snap-mandatory rounded-md border border-border"
       >
         {images.map((image, i) => (

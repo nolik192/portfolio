@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import { SanityImage } from "@/components/SanityImage";
 import { ImageGallery } from "@/components/ImageGallery";
@@ -37,6 +38,30 @@ export async function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }));
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
+
+  if (!post) {
+    return { title: "Post Not Found" };
+  }
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      type: "article",
+      publishedTime: post.publishedAt,
+    },
+  };
+}
+
 export default async function BlogPostPage({
   params,
 }: {
@@ -51,7 +76,7 @@ export default async function BlogPostPage({
 
   return (
     <article className="max-w-3xl mx-auto px-6 py-16">
-      <div className="flex items-start justify-between gap-6 mb-8 pb-8 border-b border-border">
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-6 mb-8 pb-8 border-b border-border">
         <div>
           <h1 className="text-3xl sm:text-4xl font-black text-foreground mb-2">{post.title}</h1>
           <p className="text-xs text-muted">

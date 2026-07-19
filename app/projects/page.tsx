@@ -1,7 +1,12 @@
+import type { Metadata } from "next";
 import { ProjectCard } from "@/components/ProjectCard";
 import { OtherProjectCard } from "@/components/OtherProjectCard";
 import { Reveal } from "@/components/Reveal";
 import { majorProjects, otherProjects } from "@/lib/data/projects";
+
+export const metadata: Metadata = {
+  title: "Projects",
+};
 
 export default function ProjectsPage() {
   return (

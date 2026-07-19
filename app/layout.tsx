@@ -13,9 +13,28 @@ const archivo = Archivo({
   variable: "--font-archivo",
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://yurybortsov.com";
+const DESCRIPTION = "Junior Software Engineer — backend, self-hosted infra, AI/automation.";
+
 export const metadata: Metadata = {
-  title: "Yury Bortsov",
-  description: "Junior Software Engineer — backend, self-hosted infra, AI/automation.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Yury Bortsov",
+    template: "%s — Yury Bortsov",
+  },
+  description: DESCRIPTION,
+  openGraph: {
+    title: "Yury Bortsov",
+    description: DESCRIPTION,
+    url: SITE_URL,
+    siteName: "Yury Bortsov",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Yury Bortsov",
+    description: DESCRIPTION,
+  },
 };
 
 export default function RootLayout({

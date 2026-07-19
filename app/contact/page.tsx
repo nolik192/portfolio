@@ -1,4 +1,9 @@
+import type { Metadata } from "next";
 import { contactLinks } from "@/lib/data/contact";
+
+export const metadata: Metadata = {
+  title: "Contact",
+};
 
 export default function ContactPage() {
   return (

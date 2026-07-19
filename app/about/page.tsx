@@ -1,4 +1,9 @@
+import type { Metadata } from "next";
 import { profile } from "@/lib/data/profile";
+
+export const metadata: Metadata = {
+  title: "About",
+};
 
 export default function AboutPage() {
   return (

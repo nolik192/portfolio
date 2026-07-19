@@ -1,6 +1,11 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { BlogPostList } from "@/components/BlogPostList";
 import { getAllPosts } from "@/lib/sanity/queries";
+
+export const metadata: Metadata = {
+  title: "Blog",
+};
 
 export const revalidate = 60;
 

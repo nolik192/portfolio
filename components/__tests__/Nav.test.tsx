@@ -5,10 +5,10 @@ import { Nav } from "../Nav";
 describe("Nav", () => {
   it("links to all five pages", () => {
     render(<Nav />);
-    expect(screen.getByRole("link", { name: "home" })).toHaveAttribute("href", "/");
-    expect(screen.getByRole("link", { name: "projects" })).toHaveAttribute("href", "/projects");
-    expect(screen.getByRole("link", { name: "about" })).toHaveAttribute("href", "/about");
-    expect(screen.getByRole("link", { name: "blog" })).toHaveAttribute("href", "/blog");
-    expect(screen.getByRole("link", { name: "contact" })).toHaveAttribute("href", "/contact");
+    expect(screen.getByRole("link", { name: "Index" })).toHaveAttribute("href", "/");
+    expect(screen.getByRole("link", { name: "Projects" })).toHaveAttribute("href", "/projects");
+    expect(screen.getByRole("link", { name: "About" })).toHaveAttribute("href", "/about");
+    expect(screen.getByRole("link", { name: "Blog" })).toHaveAttribute("href", "/blog");
+    expect(screen.getByRole("link", { name: "Contact" })).toHaveAttribute("href", "/contact");
   });
 });

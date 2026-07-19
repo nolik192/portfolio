@@ -6,6 +6,6 @@ describe("NotFound", () => {
   it("renders a 404 message and a link home", () => {
     render(<NotFound />);
     expect(screen.getByText(/404/)).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /cd ~/i })).toHaveAttribute("href", "/");
+    expect(screen.getByRole("link", { name: /back home/i })).toHaveAttribute("href", "/");
   });
 });

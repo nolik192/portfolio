@@ -1,14 +1,13 @@
 import Link from "next/link";
-import { TerminalPrompt } from "@/components/TerminalPrompt";
 
 export default function NotFound() {
   return (
-    <section className="max-w-4xl mx-auto px-6 py-24 font-mono text-center">
-      <TerminalPrompt command="cd /nonexistent-page" />
-      <p className="text-accent mb-2">bash: cd: /nonexistent-page: No such file or directory</p>
-      <h1 className="text-2xl font-bold text-foreground mb-6">404 — Page Not Found</h1>
-      <Link href="/" className="text-accent-secondary hover:underline">
-        cd ~
+    <section className="max-w-2xl mx-auto px-6 py-24 text-center">
+      <p className="text-xs uppercase tracking-wide font-bold text-accent mb-4">Error</p>
+      <h1 className="text-7xl font-black text-foreground mb-6">404</h1>
+      <p className="text-foreground-dim mb-8">This page doesn&rsquo;t exist.</p>
+      <Link href="/" className="text-accent font-bold hover:underline">
+        &larr; Back home
       </Link>
     </section>
   );

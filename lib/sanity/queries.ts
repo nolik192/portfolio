@@ -5,6 +5,7 @@ export interface SanityImageValue {
   hotspot?: unknown;
   crop?: unknown;
   alt?: string;
+  size?: "small" | "medium" | "large";
   dimensions?: { width: number; height: number };
 }
 

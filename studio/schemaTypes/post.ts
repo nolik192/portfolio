@@ -60,6 +60,20 @@ export const postType = defineType({
               type: "string",
               validation: (rule) => rule.warning("Alt text helps accessibility and SEO"),
             }),
+            defineField({
+              name: "size",
+              title: "Display size",
+              type: "string",
+              options: {
+                list: [
+                  { title: "Small", value: "small" },
+                  { title: "Medium", value: "medium" },
+                  { title: "Large (full width)", value: "large" },
+                ],
+                layout: "radio",
+              },
+              initialValue: "large",
+            }),
           ],
         },
       ],

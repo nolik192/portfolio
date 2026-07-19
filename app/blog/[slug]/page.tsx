@@ -4,15 +4,27 @@ import { SanityImage } from "@/components/SanityImage";
 import { getAllPosts, getPostBySlug } from "@/lib/sanity/queries";
 import type { SanityImageValue } from "@/lib/sanity/queries";
 
+const IMAGE_SIZE_WIDTH: Record<"small" | "medium" | "large", number> = {
+  small: 320,
+  medium: 512,
+  large: 768,
+};
+
 const portableTextComponents: PortableTextComponents = {
   types: {
-    image: ({ value }) => (
-      <SanityImage
-        value={value as SanityImageValue}
-        width={800}
-        className="w-full h-auto rounded-md"
-      />
-    ),
+    image: ({ value }) => {
+      const image = value as SanityImageValue;
+      const size = image.size ?? "large";
+      const width = IMAGE_SIZE_WIDTH[size];
+
+      return (
+        <SanityImage
+          value={image}
+          width={width}
+          className={`h-auto rounded-md ${size === "large" ? "w-full" : "mx-auto"}`}
+        />
+      );
+    },
   },
 };
 

@@ -10,11 +10,11 @@ export function BlogPostList({
   emptyMessage: string;
 }) {
   if (posts.length === 0) {
-    return <p className="text-sm text-muted font-mono">{emptyMessage}</p>;
+    return <p className="text-sm text-muted">{emptyMessage}</p>;
   }
 
   return (
-    <ul className="space-y-6">
+    <ul>
       {posts.map((post, index) => (
         <li key={post.slug}>
           <Reveal delay={index * 0.08}>

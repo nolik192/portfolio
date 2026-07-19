@@ -49,7 +49,8 @@ export default async function BlogPostPage({
         <SanityImage
           value={post.coverImage}
           width={768}
-          className="w-full h-auto rounded-md mb-8"
+          aspectRatio={3 / 2}
+          className="w-full h-auto rounded-md border border-border object-cover mb-8"
           priority
         />
       )}

@@ -9,7 +9,8 @@ export function BlogPostPreview({ post }: { post: PostPreview }) {
         <SanityImage
           value={post.coverImage}
           width={640}
-          className="w-full h-auto rounded mb-4 object-cover"
+          aspectRatio={3 / 2}
+          className="w-full h-auto rounded border border-border object-cover mb-4"
         />
       )}
       <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { TerminalPrompt } from "@/components/TerminalPrompt";
 import { BlogPostList } from "@/components/BlogPostList";
 import { getAllPosts } from "@/lib/sanity/queries";
 
@@ -21,11 +20,10 @@ export default async function BlogPage({
 
   return (
     <section className="max-w-4xl mx-auto px-6 py-16">
-      <TerminalPrompt command="ls blog/" />
-      <h1 className="text-3xl font-bold text-foreground font-mono mb-8">Blog</h1>
+      <h1 className="text-4xl font-black text-foreground mb-8">Blog</h1>
       <BlogPostList posts={pagePosts} emptyMessage="No posts yet — check back soon." />
       {totalPages > 1 && (
-        <nav className="flex gap-4 mt-10 font-mono text-sm" aria-label="Blog pagination">
+        <nav className="flex gap-4 mt-10 text-sm font-bold" aria-label="Blog pagination">
           {currentPage > 1 && (
             <Link href={`/blog?page=${currentPage - 1}`} className="text-accent hover:underline">
               &larr; Newer

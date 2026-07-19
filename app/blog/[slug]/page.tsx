@@ -37,23 +37,27 @@ export default async function BlogPostPage({
 
   return (
     <article className="max-w-3xl mx-auto px-6 py-16">
-      <h1 className="text-3xl sm:text-4xl font-black text-foreground mb-2">{post.title}</h1>
-      <p className="text-xs text-muted mb-8">
-        {new Date(post.publishedAt).toLocaleDateString("en-GB", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })}
-      </p>
-      {post.coverImage && (
-        <SanityImage
-          value={post.coverImage}
-          width={768}
-          aspectRatio={3 / 2}
-          className="w-full h-auto rounded-md border border-border object-cover mb-8"
-          priority
-        />
-      )}
+      <div className="flex items-start justify-between gap-6 mb-8 pb-8 border-b border-border">
+        <div>
+          <h1 className="text-3xl sm:text-4xl font-black text-foreground mb-2">{post.title}</h1>
+          <p className="text-xs text-muted">
+            {new Date(post.publishedAt).toLocaleDateString("en-GB", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </p>
+        </div>
+        {post.coverImage && (
+          <SanityImage
+            value={post.coverImage}
+            width={160}
+            aspectRatio={1}
+            className="rounded-md border border-border object-cover shrink-0"
+            priority
+          />
+        )}
+      </div>
       <div className="text-foreground-dim leading-relaxed space-y-4">
         <PortableText value={post.body as never} components={portableTextComponents} />
       </div>

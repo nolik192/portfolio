@@ -4,31 +4,31 @@ import type { PostPreview } from "@/lib/sanity/queries";
 
 export function BlogPostPreview({ post }: { post: PostPreview }) {
   return (
-    <article className="py-6 border-b border-border">
-      {post.coverImage && (
-        <SanityImage
-          value={post.coverImage}
-          width={640}
-          aspectRatio={3 / 2}
-          className="w-full h-auto rounded border border-border object-cover mb-4"
-        />
-      )}
-      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+    <article className="py-6 border-b border-border flex items-start justify-between gap-6">
+      <div className="min-w-0">
         <Link
           href={`/blog/${post.slug}`}
           className="text-xl font-bold text-foreground hover:text-accent transition-colors duration-200"
         >
           {post.title}
         </Link>
-        <span className="text-xs text-muted whitespace-nowrap">
+        <p className="text-xs text-muted mt-1">
           {new Date(post.publishedAt).toLocaleDateString("en-GB", {
             year: "numeric",
             month: "long",
             day: "numeric",
           })}
-        </span>
+        </p>
+        <p className="text-foreground-dim mt-2">{post.excerpt}</p>
       </div>
-      <p className="text-foreground-dim mt-2">{post.excerpt}</p>
+      {post.coverImage && (
+        <SanityImage
+          value={post.coverImage}
+          width={120}
+          aspectRatio={1}
+          className="rounded-md border border-border object-cover shrink-0"
+        />
+      )}
     </article>
   );
 }

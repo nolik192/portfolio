@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
-import { TerminalPrompt } from "@/components/TerminalPrompt";
 import { SanityImage } from "@/components/SanityImage";
 import { getAllPosts, getPostBySlug } from "@/lib/sanity/queries";
 import type { SanityImageValue } from "@/lib/sanity/queries";
@@ -37,10 +36,9 @@ export default async function BlogPostPage({
   }
 
   return (
-    <article className="max-w-3xl mx-auto px-6 py-16 font-sans">
-      <TerminalPrompt command={`cat blog/${post.slug}.md`} />
-      <h1 className="text-3xl font-bold text-foreground font-mono mb-2">{post.title}</h1>
-      <p className="text-xs text-muted font-mono mb-8">
+    <article className="max-w-3xl mx-auto px-6 py-16">
+      <h1 className="text-3xl sm:text-4xl font-black text-foreground mb-2">{post.title}</h1>
+      <p className="text-xs text-muted mb-8">
         {new Date(post.publishedAt).toLocaleDateString("en-GB", {
           year: "numeric",
           month: "long",

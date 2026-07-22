@@ -17,8 +17,11 @@ export function Footer() {
             </li>
           ))}
         </ul>
-        <span className="text-muted">
-          &copy; {new Date().getFullYear()} Yury Bortsov &middot; LOCHIFY
+        <span className="text-muted inline-flex items-center gap-1.5">
+          &copy; {new Date().getFullYear()} Yury Bortsov
+          <span aria-hidden="true">&middot;</span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/lochify.svg" alt="Lochify" className="h-3.5 w-auto opacity-70" />
         </span>
       </div>
     </footer>

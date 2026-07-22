@@ -6,6 +6,7 @@ export interface Project {
   description: string;
   stack: string[];
   link?: string;
+  screenshot?: string;
 }
 
 export interface OtherProject {
@@ -30,6 +31,7 @@ export const majorProjects: Project[] = [
     period: "2025 — Present",
     description: "Co-architected a full-stack monorepo (Turborepo, pnpm workspaces) with a Next.js frontend and a Nest.js API. Integrated an LLM-based recommendation engine to generate personalized gift suggestions. Set up GitLab CI/CD pipelines and Git hooks (Husky, lint-staged) to keep code quality consistent across the team.",
     stack: ["Next.js", "Nest.js", "JavaScript", "PostgreSQL", "Turborepo", "GitLab CI/CD"],
+    screenshot: "/projects/gift-helper.png",
   },
   {
     slug: "ai-news-pipeline",

@@ -6,7 +6,7 @@ export interface Project {
   description: string;
   stack: string[];
   link?: string;
-  screenshot?: string;
+  screenshots?: string[];
 }
 
 export interface OtherProject {
@@ -22,7 +22,6 @@ export const majorProjects: Project[] = [
     period: "2023 — Present",
     description: "Designed, built, and operate a production web platform serving 300+ students, running on a self-managed Debian 12 server. Led a security hardening initiative: isolated the Docker socket via a proxy, migrated all containers to run as non-root users, and performed a full production data migration. Built a Discord bot integration, an in-platform economy/cosmetics system, and public user profiles with custom-generated avatars.",
     stack: ["Python", "FastAPI", "MariaDB", "Docker", "Linux", "Discord API"],
-    link: "https://users.tryton.vlo.gda.pl/s322/",
   },
   {
     slug: "gift-helper",
@@ -31,7 +30,8 @@ export const majorProjects: Project[] = [
     period: "2025 — Present",
     description: "Co-architected a full-stack monorepo (Turborepo, pnpm workspaces) with a Next.js frontend and a Nest.js API. Integrated an LLM-based recommendation engine to generate personalized gift suggestions. Set up GitLab CI/CD pipelines and Git hooks (Husky, lint-staged) to keep code quality consistent across the team.",
     stack: ["Next.js", "Nest.js", "JavaScript", "PostgreSQL", "Turborepo", "GitLab CI/CD"],
-    screenshot: "/projects/gift-helper.png",
+    link: "https://gift-helper.com",
+    screenshots: ["/projects/gift-helper-quiz.png", "/projects/gift-helper.png"],
   },
   {
     slug: "ai-news-pipeline",

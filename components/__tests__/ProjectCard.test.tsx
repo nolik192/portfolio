@@ -16,13 +16,13 @@ describe("ProjectCard", () => {
   });
 
   it("renders a link when the project has one", () => {
-    const project = majorProjects[0];
+    const project = majorProjects[1];
     render(<ProjectCard project={project} />);
     expect(screen.getByRole("link")).toHaveAttribute("href", project.link);
   });
 
   it("renders no link when the project has none", () => {
-    const project = majorProjects[1];
+    const project = majorProjects[0];
     render(<ProjectCard project={project} />);
     expect(screen.queryByRole("link")).not.toBeInTheDocument();
   });

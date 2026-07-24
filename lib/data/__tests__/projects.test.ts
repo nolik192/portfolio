@@ -20,10 +20,11 @@ describe("projects data", () => {
     }
   });
 
-  it("includes the Tryton project with a link", () => {
-    const tryton = majorProjects.find((project) => project.slug === "tryton");
-    expect(tryton).toBeDefined();
-    expect(tryton?.link).toBe("https://users.tryton.vlo.gda.pl/s322/");
+  it("includes the gift-helper project with a link and multiple screenshots", () => {
+    const giftHelper = majorProjects.find((project) => project.slug === "gift-helper");
+    expect(giftHelper).toBeDefined();
+    expect(giftHelper?.link).toBe("https://gift-helper.com");
+    expect(giftHelper?.screenshots?.length).toBeGreaterThan(1);
   });
 
   it("has exactly three other projects", () => {

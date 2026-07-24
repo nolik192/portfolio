@@ -1,19 +1,11 @@
-import Image from "next/image";
 import type { Project } from "@/lib/data/projects";
+import { ProjectGallery } from "@/components/ProjectGallery";
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
     <article className="bg-surface border border-border rounded-md overflow-hidden transition-colors duration-200 hover:border-accent/60">
-      {project.screenshot && (
-        <div className="relative w-full aspect-video border-b border-border">
-          <Image
-            src={project.screenshot}
-            alt={`${project.name} screenshot`}
-            fill
-            sizes="(min-width: 768px) 700px, 100vw"
-            className="object-cover object-top"
-          />
-        </div>
+      {project.screenshots && project.screenshots.length > 0 && (
+        <ProjectGallery images={project.screenshots} alt={`${project.name} screenshot`} />
       )}
       <div className="p-6">
         <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-1">

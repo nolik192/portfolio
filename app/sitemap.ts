@@ -3,6 +3,8 @@ import { getAllPosts } from "@/lib/sanity/queries";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://bortsov.cc";
 
+export const revalidate = 60;
+
 const STATIC_ROUTES = ["", "/projects", "/about", "/blog", "/contact"];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

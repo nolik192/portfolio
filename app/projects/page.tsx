@@ -12,7 +12,7 @@ export default function ProjectsPage() {
   return (
     <section className="max-w-4xl mx-auto px-6 py-16">
       <h1 className="text-4xl font-black text-foreground mb-8">Projects</h1>
-      <div className="grid gap-6 mb-12">
+      <div className="grid gap-5 sm:grid-cols-2 mb-12 items-start">
         {majorProjects.map((project, index) => (
           <Reveal key={project.slug} delay={index * 0.08}>
             <ProjectCard project={project} />

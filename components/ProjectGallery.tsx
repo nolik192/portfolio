@@ -60,7 +60,7 @@ export function ProjectGallery({ images, alt }: { images: string[]; alt: string 
           <div key={src} className="relative w-full aspect-video shrink-0 snap-center">
             <Image
               src={src}
-              alt={alt}
+              alt={`${alt} ${i + 1} of ${images.length}`}
               fill
               sizes="(min-width: 768px) 700px, 100vw"
               className="object-cover object-top"

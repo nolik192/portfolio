@@ -21,7 +21,7 @@ export function Footer() {
           &copy; {new Date().getFullYear()} Yury Bortsov
           <span aria-hidden="true">&middot;</span>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/lochify.svg" alt="Lochify" className="h-3.5 w-auto opacity-70" />
+          <img src="/lochify.svg" alt="Lochify" width={18} height={14} className="h-3.5 w-auto opacity-70" />
         </span>
       </div>
     </footer>

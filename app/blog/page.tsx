@@ -2,9 +2,20 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { BlogPostList } from "@/components/BlogPostList";
 import { getAllPosts } from "@/lib/sanity/queries";
+import { SITE_URL } from "@/lib/site";
+
+const DESCRIPTION =
+  "Notes on backend development, self-hosted infrastructure, and AI/automation from Yury Bortsov.";
 
 export const metadata: Metadata = {
   title: "Blog",
+  description: DESCRIPTION,
+  alternates: { canonical: `${SITE_URL}/blog` },
+  openGraph: {
+    title: "Blog — Yury Bortsov",
+    description: DESCRIPTION,
+    url: `${SITE_URL}/blog`,
+  },
 };
 
 export const revalidate = 60;

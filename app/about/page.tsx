@@ -1,8 +1,19 @@
 import type { Metadata } from "next";
 import { profile } from "@/lib/data/profile";
+import { SITE_URL } from "@/lib/site";
+
+const DESCRIPTION =
+  "Background, skills, and experience of Yury Bortsov — a self-taught backend developer and systems administrator based in Gdańsk, Poland.";
 
 export const metadata: Metadata = {
   title: "About",
+  description: DESCRIPTION,
+  alternates: { canonical: `${SITE_URL}/about` },
+  openGraph: {
+    title: "About — Yury Bortsov",
+    description: DESCRIPTION,
+    url: `${SITE_URL}/about`,
+  },
 };
 
 export default function AboutPage() {

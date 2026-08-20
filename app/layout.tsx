@@ -6,6 +6,9 @@ import type { ReactNode } from "react";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { MotionProvider } from "@/components/MotionProvider";
+import { profile } from "@/lib/data/profile";
+import { contactLinks } from "@/lib/data/contact";
+import { SITE_URL, jsonLdScript } from "@/lib/site";
 
 const archivo = Archivo({
   subsets: ["latin"],
@@ -13,7 +16,6 @@ const archivo = Archivo({
   variable: "--font-archivo",
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://bortsov.cc";
 const DESCRIPTION = "Junior Software Engineer — backend, self-hosted infra, AI/automation.";
 
 export const metadata: Metadata = {
@@ -23,6 +25,9 @@ export const metadata: Metadata = {
     template: "%s — Yury Bortsov",
   },
   description: DESCRIPTION,
+  alternates: {
+    canonical: SITE_URL,
+  },
   openGraph: {
     title: "Yury Bortsov",
     description: DESCRIPTION,
@@ -37,6 +42,19 @@ export const metadata: Metadata = {
   },
 };
 
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  jobTitle: profile.role,
+  url: SITE_URL,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: profile.location,
+  },
+  sameAs: contactLinks.filter((link) => link.external).map((link) => link.href),
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -45,6 +63,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={archivo.variable}>
       <body className="bg-background text-foreground font-sans min-h-screen flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(personJsonLd) }}
+        />
         <MotionProvider>
           <Nav />
           <main className="flex-1">{children}</main>

@@ -13,6 +13,7 @@ export function SanityImage({
   aspectRatio,
   className,
   priority,
+  fallbackAlt = "",
 }: {
   value: SanityImageValue;
   width?: number;
@@ -20,6 +21,8 @@ export function SanityImage({
   aspectRatio?: number;
   className?: string;
   priority?: boolean;
+  /** Used when the Sanity asset has no alt text set (e.g. the post title). */
+  fallbackAlt?: string;
 }) {
   if (!value?.asset) return null;
 
@@ -38,7 +41,7 @@ export function SanityImage({
     <Image
       className={className}
       src={image.url()}
-      alt={value.alt ?? ""}
+      alt={value.alt ?? fallbackAlt}
       width={width}
       height={height}
       quality={90}

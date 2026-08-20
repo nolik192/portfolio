@@ -5,6 +5,8 @@ import { SanityImage } from "@/components/SanityImage";
 import { ImageGallery } from "@/components/ImageGallery";
 import { getAllPosts, getPostBySlug } from "@/lib/sanity/queries";
 import type { GalleryValue, SanityImageValue } from "@/lib/sanity/queries";
+import { urlFor } from "@/lib/sanity/image";
+import { SITE_URL, jsonLdScript } from "@/lib/site";
 
 const IMAGE_SIZE_WIDTH: Record<"small" | "medium" | "large", number> = {
   small: 320,
@@ -50,14 +52,20 @@ export async function generateMetadata({
     return { title: "Post Not Found" };
   }
 
+  const url = `${SITE_URL}/blog/${slug}`;
+  const coverImageUrl = post.coverImage ? urlFor(post.coverImage).width(1200).height(630).fit("crop").url() : undefined;
+
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: { canonical: url },
     openGraph: {
       title: post.title,
       description: post.excerpt,
+      url,
       type: "article",
       publishedTime: post.publishedAt,
+      images: coverImageUrl ? [{ url: coverImageUrl, width: 1200, height: 630 }] : undefined,
     },
   };
 }
@@ -74,8 +82,27 @@ export default async function BlogPostPage({
     notFound();
   }
 
+  const coverImageUrl = post.coverImage
+    ? urlFor(post.coverImage).width(1200).height(630).fit("crop").url()
+    : undefined;
+
+  const blogPostingJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.publishedAt,
+    url: `${SITE_URL}/blog/${slug}`,
+    image: coverImageUrl,
+    author: { "@type": "Person", name: "Yury Bortsov", url: SITE_URL },
+  };
+
   return (
     <article className="max-w-3xl mx-auto px-6 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(blogPostingJsonLd) }}
+      />
       <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-6 mb-8 pb-8 border-b border-border">
         <div>
           <h1 className="text-3xl sm:text-4xl font-black text-foreground mb-2">{post.title}</h1>
@@ -92,6 +119,7 @@ export default async function BlogPostPage({
             value={post.coverImage}
             width={160}
             aspectRatio={1}
+            fallbackAlt={post.title}
             className="rounded-md border border-border object-cover shrink-0"
             priority
           />

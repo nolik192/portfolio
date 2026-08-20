@@ -1,9 +1,19 @@
 import type { Metadata } from "next";
 import { contactLinks } from "@/lib/data/contact";
 import { ContactIcon } from "@/components/ContactIcon";
+import { SITE_URL } from "@/lib/site";
+
+const DESCRIPTION = "Get in touch with Yury Bortsov — email, GitHub, LinkedIn, YouTube, and Twitch.";
 
 export const metadata: Metadata = {
   title: "Contact",
+  description: DESCRIPTION,
+  alternates: { canonical: `${SITE_URL}/contact` },
+  openGraph: {
+    title: "Contact — Yury Bortsov",
+    description: DESCRIPTION,
+    url: `${SITE_URL}/contact`,
+  },
 };
 
 export default function ContactPage() {

@@ -5,7 +5,7 @@ import type { PostPreview } from "@/lib/sanity/queries";
 export function BlogPostPreview({ post }: { post: PostPreview }) {
   return (
     <article className="py-6 border-b border-border flex flex-col sm:flex-row sm:items-start justify-between gap-6">
-      <div className="min-w-0">
+      <div className="min-w-0 flex-1">
         <Link
           href={`/blog/${post.slug}`}
           className="text-xl font-bold text-foreground hover:text-accent transition-colors duration-200"

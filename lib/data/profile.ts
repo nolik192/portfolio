@@ -69,6 +69,6 @@ export const profile: Profile = {
   languages: [
     { name: "Russian", level: "Native" },
     { name: "Polish", level: "Fluent" },
-    { name: "English", level: "B2" },
+    { name: "English", level: "Fluent" },
   ],
 };
